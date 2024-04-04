@@ -68,6 +68,9 @@ export class PlayerController extends Component {
     //
 
     @property(CCBoolean)
+    attackSmashDown = false;
+
+    @property(CCBoolean)
     attackNotJump = false;
 
     @property(CCBoolean)
@@ -269,7 +272,8 @@ export class PlayerController extends Component {
     }
 
     onSmashDown(active: boolean) {
-        if (this.m_finish ||
+        if (!this.attackSmashDown ||
+            this.m_finish ||
             this.m_hurt ||
             this.m_fight ||
             this.m_smashDownActive ||
@@ -299,12 +303,12 @@ export class PlayerController extends Component {
 
     smashDownEffectReady() {
         this.smashDownEffect.node.active = true;
-        this.smashDownEffect.SetPosV2(v2(0, 150));
+        this.smashDownEffect.SetPosV3(v3(0, 150, 0), this.node.position.clone());
         this.smashDownEffectSpine.SetAnim("1", false);
     }
     smashDownEffectGround() {
         this.smashDownEffect.node.active = true;
-        this.smashDownEffect.SetPosV2(v2(0, 0));
+        this.smashDownEffect.SetPosV3(v3(0, 0, 0), this.node.position.clone());
         this.smashDownEffectSpine.SetAnim("2", false);
     }
 

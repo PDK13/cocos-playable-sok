@@ -4737,9 +4737,11 @@
       "__id__": 127
     },
     "spineEvent": false,
-    "spineData": null,
-    "spineSkin": "3",
-    "spineWeapon": "w3",
+    "Skeleton": null,
+    "Skin": [
+      "3",
+      "w3"
+    ],
     "_id": "7cV5gmJplCXJM3J7o/gxvy"
   },
   {

@@ -1,12 +1,18 @@
-import { _decorator, Component, Node, Vec3, v3, Camera, CCFloat, director, tween, Tween, AudioSource, CCBoolean } from 'cc';
+import { _decorator, Component, Node, Vec3, v3, Camera, CCFloat, director, tween, Tween, AudioSource, CCBoolean, Vec2, v2 } from 'cc';
 import { BackgroundParallax } from './BackgroundParallax';
 import GameEvent from '../GameEvent';
 const { ccclass, property } = _decorator;
 
 @ccclass('CameraMovement')
 export default class CameraMovement extends Component {
-    @property(CCBoolean)
-    paralax: boolean = true;
+
+    @property(CCFloat)
+    smoothTime = 0.1;
+
+    @property(Vec2)
+    offset: Vec2 = v2(0, 0);
+
+    //
 
     @property(CCBoolean)
     lockX: boolean = false;
@@ -19,22 +25,16 @@ export default class CameraMovement extends Component {
     @property(CCBoolean)
     limit: boolean = false;
 
-    @property(CCFloat)
-    maxX: number = 999;
+    @property(Vec2)
+    limitMax: Vec2 = v2(1000, 1000);
 
-    @property(CCFloat)
-    minX: number = -999;
-
-    @property(CCFloat)
-    maxY: number = 999;
-
-    @property(CCFloat)
-    minY: number = -999;
+    @property(Vec2)
+    limitMin: Vec2 = v2(-1000, -1000);
 
     //
 
-    @property(CCFloat)
-    smoothTime = 0.1;
+    @property(CCBoolean)
+    paralax: boolean = true;
 
     @property(Node)
     player: Node | null = null;
@@ -49,12 +49,16 @@ export default class CameraMovement extends Component {
     m_stop: boolean = false;
     m_finishPos: Vec3;
     m_targetY: number = 0;
+    m_syncY: boolean = false;
 
     onLoad() {
         director.on(GameEvent.PLAYER_STOP, this.onFinish, this);
         director.on(GameEvent.PLAYER_X4, this.onPlayerX4, this);
         director.on(GameEvent.PLAYER_GROUND, this.onPlayerGround, this);
         director.on(GameEvent.PLAYER_FLAG, this.onPlayerFlag, this);
+        director.on(GameEvent.PLAYER_BUBBLE, this.onPlayerBubble, this);
+        director.on(GameEvent.PLAYER_NORMAL, this.onPlayerNormal, this);
+        //director.on(GameEvent.PLAYER_FLAG, this.onPlayerFlag, this);
         //
         this.m_parallaxes = this.getComponentsInChildren(BackgroundParallax);
         //
@@ -73,43 +77,53 @@ export default class CameraMovement extends Component {
         let target = v3();
         if (this.m_stop) {
             target = this.m_finishPos;
+            this.m_target = this.m_target.lerp(target, this.smoothTime);
+            this.node.worldPosition = this.m_target;
         }
         else {
             target = this.player.position.clone();
-            //if ((this.m_targetY - target.y) > 100)
-            //    this.m_targetY = target.y;
-        }
-        target.y = this.m_targetY + 300;
-        //
-        //LOCK:
-        if (this.lockX)
-            target.x = this.m_lock.x;
-        if (this.lockY)
-            target.y = this.m_lock.y;
-        //
-        //LIMIT:
-        if (this.limit) {
-            if (target.x > this.maxX)
-                target.x = this.maxX;
-            else
-                if (target.x < this.minX)
-                    target.x = this.minX;
+            //
+            if (this.m_syncY)
+                this.m_targetY = target.y;
+            else {
+                if ((this.m_targetY - target.y) > 100)
+                    this.m_targetY = target.y;
+                target.y = this.m_targetY + 300;
+            }
+            //
+            //LOCK:
+            if (this.lockX)
+                target.x = this.m_lock.x;
+            if (this.lockY)
+                target.y = this.m_lock.y;
+            //
+            //LIMIT:
+            if (this.limit) {
+                if (target.x > this.limitMax.x)
+                    target.x = this.limitMax.x;
+                else
+                    if (target.x < this.limitMin.x)
+                        target.x = this.limitMin.x;
 
-            if (target.y > this.maxY)
-                target.y = this.maxY;
-            else
-                if (target.y < this.minY)
-                    target.y = this.minY;
+                if (target.y > this.limitMax.y)
+                    target.y = this.limitMax.y;
+                else
+                    if (target.y < this.limitMin.y)
+                        target.y = this.limitMin.y;
+            }
+            //
+            target.x += this.offset.x;
+            target.y += this.offset.y;
+            //
+            this.m_target = this.m_target.lerp(target, this.smoothTime);
+            this.node.position = this.m_target;
         }
         //
-        this.m_target = this.m_target.lerp(target, this.smoothTime);
-        this.node.position = this.m_target;
-        //
-        if (!this.paralax)
-            return;
-        this.m_parallaxes.forEach(element => {
-            element.excute();
-        });
+        if (this.paralax) {
+            this.m_parallaxes.forEach(element => {
+                element.excute();
+            });
+        }
     }
 
     onPlayerFlag() {
@@ -122,6 +136,7 @@ export default class CameraMovement extends Component {
     onFinish(position: Vec3) {
         this.m_stop = true;
         this.m_finishPos = position.clone();
+        this.m_target = this.node.worldPosition;
         Tween.stopAllByTarget(this.node);
         this.node.eulerAngles = v3();
         if (this.getComponent(AudioSource) != null)
@@ -138,5 +153,17 @@ export default class CameraMovement extends Component {
 
     onPlayerGround(targetY: number) {
         this.m_targetY = targetY;
+    }
+
+    onPlayerBubble() {
+        this.m_syncY = true;
+    }
+
+    onPlayerNormal() {
+        this.m_syncY = false;
+    }
+
+    onTargetSwitch(target: Node) {
+        this.player = target;
     }
 }
