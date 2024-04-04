@@ -162,7 +162,7 @@
     "_priority": 1,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 609.920724801812,
+    "_orthoHeight": 677.433962264151,
     "_near": 1,
     "_far": 1000,
     "_color": {
@@ -3829,7 +3829,7 @@
     "loop": false,
     "auto": true,
     "directStore": true,
-    "androidLink": "https://play.google.com/store/apps/details?id=com.reaper.quest.death.adventure",
+    "androidLink": "https://play.google.com/store/apps/details?id=com.adventure.demon.world&gl=us",
     "iosLink": "",
     "adsType": 0,
     "panelComplete": {
@@ -4196,15 +4196,26 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "paralax": true,
+    "smoothTime": 0.1,
+    "offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
     "lockX": false,
     "lockY": false,
     "limit": false,
-    "maxX": 999,
-    "minX": -999,
-    "maxY": 999,
-    "minY": -999,
-    "smoothTime": 0.1,
+    "limitMax": {
+      "__type__": "cc.Vec2",
+      "x": 1000,
+      "y": 1000
+    },
+    "limitMin": {
+      "__type__": "cc.Vec2",
+      "x": -1000,
+      "y": -1000
+    },
+    "paralax": true,
     "player": {
       "__id__": 124
     },
@@ -4694,10 +4705,12 @@
     "animSmashDownLoop": "attack_jump_1",
     "animWall": "bam_tuong_down",
     "animHit": "hit",
+    "attackSmashDown": false,
     "attackNotJump": true,
     "attackNotMove": false,
     "attackSwitchEach": false,
     "noneContinueX": false,
+    "conveyorBeltHold": false,
     "playerProtect": false,
     "playerHealth": 2,
     "autoRun": true,
