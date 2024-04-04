@@ -159,7 +159,7 @@
     "_priority": 1,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 756.4044943820224,
+    "_orthoHeight": 677.433962264151,
     "_near": 1,
     "_far": 1000,
     "_color": {
@@ -5264,6 +5264,7 @@
     "attackNotMove": true,
     "attackSwitchEach": true,
     "noneContinueX": true,
+    "conveyorBeltHold": true,
     "playerProtect": true,
     "playerHealth": 3,
     "autoRun": true,

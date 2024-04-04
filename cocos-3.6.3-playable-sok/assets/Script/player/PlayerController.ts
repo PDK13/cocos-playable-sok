@@ -82,6 +82,9 @@ export class PlayerController extends Component {
     @property(CCBoolean)
     noneContinueX = false;
 
+    @property(CCBoolean)
+    conveyorBeltHold = false;
+
     //
 
     @property(CCBoolean)
@@ -426,10 +429,17 @@ export class PlayerController extends Component {
 
     onPlayerMoveStop() {
         this.m_moveDirection = 0;
-        this.m_conveyorBeltActive = false;
-        let veloc = this.rigidbody.linearVelocity.clone();
-        veloc.x = 0;
-        this.rigidbody.linearVelocity = veloc;
+        if (!this.conveyorBeltHold && this.m_conveyorBeltActive) {
+            this.m_conveyorBeltActive = false;
+            let veloc = this.rigidbody.linearVelocity.clone();
+            veloc.x = 0;
+            this.rigidbody.linearVelocity = veloc;
+        }
+        else {
+            let veloc = this.rigidbody.linearVelocity.clone();
+            veloc.x = 0;
+            this.rigidbody.linearVelocity = veloc;
+        }
     }
 
     onPlayerStop(position: Vec3) {
