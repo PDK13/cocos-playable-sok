@@ -7,6 +7,10 @@ const { ccclass, property } = _decorator;
 
 @ccclass('CutsceneDemonStartManager')
 export class CutsceneDemonStartManager extends Component {
+
+    @property(CCFloat)
+    timeScale: number = 1;
+
     @property(CCFloat)
     delayStart: number = 1.5;
 
@@ -84,6 +88,9 @@ export class CutsceneDemonStartManager extends Component {
         this.zeroBlue.node.active = false;
         this.bulletZeroRed.node.active = false;
         this.bulletZeroBlue.node.active = false;
+        //
+        this.zeroRed.SetTimeScale(this.timeScale);
+        this.zeroBlue.SetTimeScale(this.timeScale);
         //
         director.on(GameEvent.CUTSCENE_CONTINUE, this.onCutsceneContinue, this);
         //
@@ -163,10 +170,10 @@ export class CutsceneDemonStartManager extends Component {
 
     SetAction01() {
         //Duration:
-        let CameraMoveDown = 2;
-        let ZeroRedFlyToWall = 0.5;
-        let ZeroRedDelayLandGround = 0.25;
-        let ZeroRedLandToGround = 0.25;
+        let CameraMoveDown = 2 / this.timeScale;
+        let ZeroRedFlyToWall = 0.5 / this.timeScale;
+        let ZeroRedDelayLandGround = 0.25 / this.timeScale;
+        let ZeroRedLandToGround = 0.25 / this.timeScale;
         //
         //Start:
         this.camera.SetMove(v2(-500, -870), CameraMoveDown, 0); //Camera From (-500, 200) to (-500, -870)
@@ -200,12 +207,12 @@ export class CutsceneDemonStartManager extends Component {
 
     SetAction02() {
         //Duration:
-        let CameraMoveRight = 1;
-        let ZeroBlueFireDelay = 0.25;
-        let BulletBlueFlyMiss = 0.5;
-        let ZeroRedJumpDelay = 0.2;
-        let ZeroRedJumpThough = 0.5;
-        let TwoZeroDelayNextAction = 0.2;
+        let CameraMoveRight = 1 / this.timeScale;
+        let ZeroBlueFireDelay = 0.25 / this.timeScale;
+        let BulletBlueFlyMiss = 0.5 / this.timeScale;
+        let ZeroRedJumpDelay = 0.2 / this.timeScale;
+        let ZeroRedJumpThough = 0.5 / this.timeScale;
+        let TwoZeroDelayNextAction = 0.2 / this.timeScale;
         //
         //Start:
         this.camera.SetMove(v2(-200, -870), CameraMoveRight, 0); //Camera From (-500,-870) to (-200,-870)
@@ -258,7 +265,7 @@ export class CutsceneDemonStartManager extends Component {
 
     SetAction03() {
         //Duration
-        let TwoZeroDashToward = 0.35;
+        let TwoZeroDashToward = 0.35 / this.timeScale;
         //
         //Start
         this.zeroRed.SetAnim(this.animDash, true);
@@ -280,9 +287,9 @@ export class CutsceneDemonStartManager extends Component {
 
     SetAction04() {
         //Duration
-        let TwoZeroMoveFight01 = 0.125;
-        let TwoZeroMoveFight02 = 0.125;
-        let TwoZeroMoveFight03 = 0.125;
+        let TwoZeroMoveFight01 = 0.125 / this.timeScale;
+        let TwoZeroMoveFight02 = 0.125 / this.timeScale;
+        let TwoZeroMoveFight03 = 0.125 / this.timeScale;
         //
         //Start
         let DurationFight01 = this.zeroRed.SetAnim(this.animAttack2, false);
@@ -332,11 +339,11 @@ export class CutsceneDemonStartManager extends Component {
 
     SetAction05() {
         //Duration
-        let ZeroRedDashToward = 0.5;
-        let ZeroBlueDelayJump = 0.2;
-        let ZeroBlueJumpToward = 0.2;
-        let ZeroBlueSmashDown = 0.2;
-        let ZeroRedDashBack = 0.2;
+        let ZeroRedDashToward = 0.5 / this.timeScale;
+        let ZeroBlueDelayJump = 0.2 / this.timeScale;
+        let ZeroBlueJumpToward = 0.2 / this.timeScale;
+        let ZeroBlueSmashDown = 0.2 / this.timeScale;
+        let ZeroRedDashBack = 0.2 / this.timeScale;
         //
         //Start
         this.zeroRed.SetAnim(this.animDash, true);
@@ -387,7 +394,7 @@ export class CutsceneDemonStartManager extends Component {
 
     SetAction06() {
         //Duration
-        let ZeroRedKnockBack = 0.3;
+        let ZeroRedKnockBack = 0.3 / this.timeScale;
         //
         //Start
         this.camera.SetMove(v2(50, -870), ZeroRedKnockBack, 0); //Camera From (-225,-870) to (50,-870)
@@ -413,7 +420,7 @@ export class CutsceneDemonStartManager extends Component {
 
     SetAction07() {
         //Duration
-        let BulletFlyTowardBlow = 0.3;
+        let BulletFlyTowardBlow = 0.3 / this.timeScale;
         //
         //Start
         this.scheduleOnce(() => {
@@ -450,9 +457,9 @@ export class CutsceneDemonStartManager extends Component {
         //Duration
         let PosXWallL = 900;
         let PosXWallR = 1250;
-        let ZeroRedFallBack = 0.4;
-        let ZeroRedJumpWall = 0.35;
-        let ZeroRedDashOut = 0.35;
+        let ZeroRedFallBack = 0.4 / this.timeScale;
+        let ZeroRedJumpWall = 0.35 / this.timeScale;
+        let ZeroRedDashOut = 0.35 / this.timeScale;
         //
         //Start
         this.camera.SetMove(v2(280, -870), ZeroRedFallBack, 0); //Camera From (50,-870) to (280,-870)
@@ -524,12 +531,12 @@ export class CutsceneDemonStartManager extends Component {
 
     SetAction09() {
         //Duration
-        let ZeroRedDownSmash = 0.5;
-        let ZeroBlueJumpUp = 0.2;
-        let ZeroBlueFallBack = 0.1;
-        let ZeroBlueDownSmash = 0.35;
-        let ZeroRedDashOut = 0.2;
-        let ZeroBlueIdleDelay = 0.2;
+        let ZeroRedDownSmash = 0.5 / this.timeScale;
+        let ZeroBlueJumpUp = 0.2 / this.timeScale;
+        let ZeroBlueFallBack = 0.1 / this.timeScale;
+        let ZeroBlueDownSmash = 0.35 / this.timeScale;
+        let ZeroRedDashOut = 0.2 / this.timeScale;
+        let ZeroBlueIdleDelay = 0.2 / this.timeScale;
         //
         //Start
         let SmashDownReadyDuration = this.zeroRed.SetAnim(this.animSmashDownReady, false) + this.charDownSmashDelay;
@@ -595,8 +602,8 @@ export class CutsceneDemonStartManager extends Component {
 
     SetAction10() {
         //Duration
-        let ZeroBlueDelayAction = 0.1;
-        let ZeroBlueDashToward = 0.25;
+        let ZeroBlueDelayAction = 0.1 / this.timeScale;
+        let ZeroBlueDashToward = 0.25 / this.timeScale;
         //
         //Start
         this.scheduleOnce(() => {
@@ -616,8 +623,8 @@ export class CutsceneDemonStartManager extends Component {
 
     SetAction11() {
         //Duration
-        let MaskWhiteShowDelay = 3;
-        let MaskWhiteShowDuration = 3;
+        let MaskWhiteShowDelay = 3 / this.timeScale;
+        let MaskWhiteShowDuration = 3 / this.timeScale;
         let MoveToStoreDelay = MaskWhiteShowDelay + MaskWhiteShowDuration + 1;
         //
         //Start
