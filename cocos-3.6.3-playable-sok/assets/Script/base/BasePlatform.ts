@@ -1,11 +1,13 @@
 import { _decorator, CCInteger, CCString, Collider2D, Component, Contact2DType, director, IPhysics2DContact, Node } from 'cc';
-import GameTag from '../GameTag';
 const { ccclass, property } = _decorator;
 
 @ccclass('BasePlatform')
 export class BasePlatform extends Component {
 
     //To use this script, object should have 2 type of collision: Collision and Trigger
+
+    @property(CCInteger)
+    ContactPlayer: number = 100;
 
     m_grounded: boolean = false;
     m_platform: Collider2D[] = [];
@@ -35,7 +37,7 @@ export class BasePlatform extends Component {
     }
 
     onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
-        if (otherCollider.tag == GameTag.PLAYER) {
+        if (otherCollider.tag == this.ContactPlayer) {
             if (otherCollider.node.worldPosition.y > this.node.worldPosition.y)
                 this.onPlatformActive(true);
             else
@@ -44,7 +46,7 @@ export class BasePlatform extends Component {
     }
 
     onEndContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
-        if (otherCollider.tag == GameTag.PLAYER) {
+        if (otherCollider.tag == this.ContactPlayer) {
             this.onPlatformActive(false);
         }
     }
