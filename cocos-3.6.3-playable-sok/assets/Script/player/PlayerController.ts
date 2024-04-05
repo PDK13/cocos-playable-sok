@@ -85,6 +85,9 @@ export class PlayerController extends Component {
     @property(CCBoolean)
     conveyorBeltHold = false;
 
+    @property(CCBoolean)
+    conveyorBeltEndJump = false;
+
     //
 
     @property(CCBoolean)
@@ -229,6 +232,20 @@ export class PlayerController extends Component {
         if (this.m_conveyorBeltActive)
             return;
         //
+        this.m_lockJump = true;
+        this.jumpAudio.play();
+        this.m_grounded = false;
+        let veloc = this.rigidbody.linearVelocity;
+        veloc.y = this.jumpForce;
+        this.rigidbody.linearVelocity = veloc;
+        //
+        var Duration = this.spine.SetAnim(this.animUp, false);
+        setTimeout(() => {
+            this.m_lockJump = false;
+        }, Duration);
+    }
+
+    onJumpForce() {
         this.m_lockJump = true;
         this.jumpAudio.play();
         this.m_grounded = false;
@@ -782,6 +799,8 @@ export class PlayerController extends Component {
             //Body Player contact with Trigger!
             switch (otherCollider.tag) {
                 case GameTag.TRIGGER_OBJ_CONVEYOR_BELT: //Trigger obj conveyor belt
+                    if (this.conveyorBeltEndJump && this.m_conveyorBeltActive)
+                        this.onJumpForce();
                     this.m_conveyorBelt = null;
                     this.m_conveyorBeltActive = false;
                     break;
