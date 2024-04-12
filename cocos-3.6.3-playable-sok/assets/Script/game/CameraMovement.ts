@@ -1,10 +1,16 @@
-import { _decorator, Component, Node, Vec3, v3, Camera, CCFloat, director, tween, Tween, AudioSource, CCBoolean, Vec2, v2 } from 'cc';
-import { BackgroundParallax } from './BackgroundParallax';
+import { _decorator, Component, Node, CCFloat, view, screen, Vec3, AudioSource, CCBoolean, Camera, Tween, Vec2, director, tween, v2, v3 } from 'cc';
 import GameEvent from '../GameEvent';
+import { BackgroundParallax } from './BackgroundParallax';
 const { ccclass, property } = _decorator;
 
 @ccclass('CameraMovement')
 export default class CameraMovement extends Component {
+
+    @property(CCBoolean)
+    lockX: boolean = false;
+
+    @property(CCBoolean)
+    lockY: boolean = false;
 
     @property(CCFloat)
     smoothTime = 0.1;
@@ -15,10 +21,13 @@ export default class CameraMovement extends Component {
     //
 
     @property(CCBoolean)
-    lockX: boolean = false;
+    othorScreen: boolean = true;
 
-    @property(CCBoolean)
-    lockY: boolean = false;
+    @property(CCFloat)
+    othorLandscape: number = 1;
+
+    @property(CCFloat)
+    othorPortrait: number = 2.5;
 
     //
 
@@ -37,13 +46,16 @@ export default class CameraMovement extends Component {
     paralax: boolean = true;
 
     @property(Node)
-    player: Node | null = null;
-
-    @property(Node)
     background: Node | null = null;
 
-    m_parallaxes: BackgroundParallax[] = [];
+    @property(Node)
+    player: Node | null = null;
 
+    //
+
+    m_camera: Camera = null;
+    m_orthoHeight: number = 0;
+    m_parallaxes: BackgroundParallax[] = [];
     m_lock: Vec3;
     m_target: Vec3;
     m_stop: boolean = false;
@@ -55,22 +67,31 @@ export default class CameraMovement extends Component {
         director.on(GameEvent.PLAYER_STOP, this.onFinish, this);
         director.on(GameEvent.PLAYER_X4, this.onPlayerX4, this);
         director.on(GameEvent.PLAYER_GROUND, this.onPlayerGround, this);
-        director.on(GameEvent.PLAYER_FLAG, this.onPlayerFlag, this);
         director.on(GameEvent.PLAYER_BUBBLE, this.onPlayerBubble, this);
         director.on(GameEvent.PLAYER_NORMAL, this.onPlayerNormal, this);
-        //director.on(GameEvent.PLAYER_FLAG, this.onPlayerFlag, this);
+        director.on(GameEvent.PLAYER_FLAG, this.onPlayerFlag, this);
+        //
+        if (this.m_camera == null)
+            this.m_camera = this.getComponent(Camera);
+        this.m_orthoHeight = this.m_camera.orthoHeight.valueOf();
         //
         this.m_parallaxes = this.getComponentsInChildren(BackgroundParallax);
         //
         if (this.lockX || this.lockY)
-            this.m_lock = this.node.position.clone();
+            this.m_lock = this.node.worldPosition.clone();
     }
 
     start() {
-        this.m_target = this.node.position.clone();
-        let cam = this.getComponent(Camera);
-        let ratio = 540 / cam.orthoHeight;
-        this.background.scale = new Vec3(2 / ratio, 2 / ratio, 1);
+        //NOTE: This event must add from Start to get event!
+        view.on('canvas-resize', () => {
+            this.onCanvasResize(false);
+            this.onUpdateBackground();
+        });
+        this.onCanvasResize(true);
+        //
+        this.m_target = this.node.worldPosition.clone();
+        //
+        this.onUpdateBackground();
     }
 
     lateUpdate(dt: number) {
@@ -81,7 +102,7 @@ export default class CameraMovement extends Component {
             this.node.worldPosition = this.m_target;
         }
         else {
-            target = this.player.position.clone();
+            target = this.player.worldPosition.clone();
             //
             if (this.m_syncY)
                 this.m_targetY = target.y;
@@ -116,7 +137,7 @@ export default class CameraMovement extends Component {
             target.y += this.offset.y;
             //
             this.m_target = this.m_target.lerp(target, this.smoothTime);
-            this.node.position = this.m_target;
+            this.node.worldPosition = this.m_target;
         }
         //
         if (this.paralax) {
@@ -124,6 +145,27 @@ export default class CameraMovement extends Component {
                 element.excute();
             });
         }
+    }
+
+    onCanvasResize(Force: Boolean) {
+        if (!this.othorScreen)
+            return;
+        //
+        const screenSize = screen.windowSize;
+        const viewScaleX = view.getScaleX();
+        const viewScaleY = view.getScaleY();
+        let w = screenSize.width / viewScaleX;
+        let h = screenSize.height / viewScaleY;
+        //
+        if (w < h)
+            this.m_camera.orthoHeight = this.m_orthoHeight * this.othorPortrait;
+        else
+            this.m_camera.orthoHeight = this.m_orthoHeight * this.othorLandscape;
+    }
+
+    onUpdateBackground() {
+        let ratio = 540 / this.m_camera.orthoHeight;
+        this.background.scale = new Vec3(2 / ratio, 2 / ratio, 1);
     }
 
     onPlayerFlag() {
