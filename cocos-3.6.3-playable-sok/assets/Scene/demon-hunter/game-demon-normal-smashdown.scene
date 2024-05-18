@@ -150,7 +150,7 @@
     "_priority": 1,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 1202.962962962963,
+    "_orthoHeight": 1240,
     "_near": 1,
     "_far": 1000,
     "_color": {
@@ -8463,7 +8463,7 @@
     "_id": "2dt+Nx3wVBEodvgzFcSx9m"
   },
   {
-    "__type__": "e46d5wdX/JKfosX0OkB1mCZ",
+    "__type__": "6ea48F7zVtMgr9mtOjOCJsU",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -8471,7 +8471,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "_id": "4fkmMyYkhC7IMcUPgOtYjo"
+    "_id": "7dM6GWhdZGYqG41Yqf8bEo"
   },
   {
     "__type__": "cc.PrefabInfo",
