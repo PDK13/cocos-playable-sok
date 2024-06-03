@@ -63,6 +63,9 @@ export class PlayerController extends Component {
     @property(CCString)
     animHit: string = 'hit';
 
+    @property(CCString)
+    animWin: string = 'idle';
+
     spine: BaseSpineCustom = null;
 
     //
@@ -607,7 +610,7 @@ export class PlayerController extends Component {
     finish() {
         let time = Math.abs(this.node.worldPosition.x - this.m_finishPos.x) / 1000;
         tween(this.node).to(time, { position: this.m_finishPos }).call(() => {
-            this.spine.SetAnim('win', false);
+            this.spine.SetAnim(this.animWin, this.animWin == this.animIdle);
         }).delay(2).call(() => {
             director.emit(GameEvent.GAME_FINISH);
         }).start();

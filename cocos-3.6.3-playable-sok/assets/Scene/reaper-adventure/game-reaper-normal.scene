@@ -156,7 +156,7 @@
     "_priority": 1,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 958.4466019417475,
+    "_orthoHeight": 668.8,
     "_near": 1,
     "_far": 1000,
     "_color": {
@@ -3275,7 +3275,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 205.59,
+      "width": 205.6,
       "height": 381.65
     },
     "_anchorPoint": {
@@ -3708,6 +3708,7 @@
     "animSmashDownLoop": "",
     "animWall": "",
     "animHit": "hit",
+    "animWin": "idle",
     "attackSmashDown": false,
     "attackNotJump": false,
     "attackNotMove": false,
