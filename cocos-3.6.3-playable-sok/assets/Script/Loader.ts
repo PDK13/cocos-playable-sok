@@ -59,6 +59,7 @@ export default class Loader extends Component {
             if (this.buttonSmashDown != null)
                 this.buttonSmashDown.getComponent(Button).interactable = false;
             this.node.on(Input.EventType.TOUCH_START, this.retryOnclick, this);
+            this.node.getChildByName('press').on(Input.EventType.TOUCH_START, this.retryOnclick, this);
             return;
         }
         //
