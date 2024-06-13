@@ -162,7 +162,7 @@
     "_priority": 1,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 820.8491947291362,
+    "_orthoHeight": 827.8770131771596,
     "_near": 1,
     "_far": 1000,
     "_color": {
@@ -4596,8 +4596,8 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 165.1,
-      "height": 194.4
+      "width": 166.13,
+      "height": 191.36
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",

@@ -1,209 +1,209 @@
 
 char.png
-size: 2617,2633
+size: 1233,515
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 New folder/attack_sword/fx_atksword11
   rotate: true
-  xy: 1851, 874
-  size: 586, 608
-  orig: 608, 622
-  offset: 16, 8
+  xy: 368, 4
+  size: 175, 182
+  orig: 182, 187
+  offset: 5, 3
   index: -1
 New folder/attack_sword/fx_atksword12
-  rotate: true
-  xy: 1141, 47
-  size: 532, 604
-  orig: 608, 622
-  offset: 70, 12
+  rotate: false
+  xy: 1067, 236
+  size: 159, 181
+  orig: 182, 187
+  offset: 21, 4
   index: -1
 New folder/attack_sword/fx_atksword13
   rotate: true
-  xy: 1044, 581
-  size: 316, 545
-  orig: 608, 622
-  offset: 286, 33
+  xy: 1067, 419
+  size: 94, 164
+  orig: 182, 187
+  offset: 86, 10
   index: -1
 New folder/attack_sword/fx_atksword14
-  rotate: true
-  xy: 2323, 578
-  size: 294, 273
-  orig: 608, 622
-  offset: 308, 52
+  rotate: false
+  xy: 992, 15
+  size: 88, 82
+  orig: 182, 187
+  offset: 92, 16
   index: -1
 New folder/attack_sword/fx_atksword15
-  rotate: false
-  xy: 1962, 20
-  size: 181, 159
-  orig: 608, 622
-  offset: 394, 52
+  rotate: true
+  xy: 1017, 316
+  size: 54, 48
+  orig: 182, 187
+  offset: 118, 16
   index: -1
 charbasic_34face
   rotate: true
-  xy: 2461, 1067
-  size: 178, 153
-  orig: 193, 153
+  xy: 1017, 260
+  size: 54, 46
+  orig: 58, 46
   offset: 0, 0
   index: -1
 charbasic_arm
   rotate: false
-  xy: 2496, 2436
-  size: 115, 195
-  orig: 115, 195
+  xy: 1160, 10
+  size: 35, 59
+  orig: 35, 59
   offset: 0, 0
   index: -1
 charbasic_body
-  rotate: false
-  xy: 1591, 635
-  size: 250, 262
-  orig: 257, 262
-  offset: 7, 0
+  rotate: true
+  xy: 1102, 71
+  size: 75, 79
+  orig: 77, 79
+  offset: 2, 0
   index: -1
 charbasic_frontface
-  rotate: false
-  xy: 1747, 25
-  size: 213, 154
-  orig: 213, 154
+  rotate: true
+  xy: 896, 2
+  size: 64, 46
+  orig: 64, 46
   offset: 0, 0
   index: -1
 charbasic_hand1
-  rotate: false
-  xy: 2461, 874
-  size: 72, 61
-  orig: 72, 61
+  rotate: true
+  xy: 368, 268
+  size: 22, 18
+  orig: 22, 18
   offset: 0, 0
   index: -1
 charbasic_hand2
-  rotate: false
-  xy: 2496, 2225
-  size: 105, 99
-  orig: 107, 99
-  offset: 1, 0
+  rotate: true
+  xy: 735, 2
+  size: 32, 30
+  orig: 32, 30
+  offset: 0, 0
   index: -1
 charbasic_head
-  rotate: true
-  xy: 2403, 244
-  size: 332, 212
-  orig: 332, 212
+  rotate: false
+  xy: 794, 2
+  size: 100, 64
+  orig: 100, 64
   offset: 0, 0
   index: -1
 charbasic_headback
   rotate: false
-  xy: 2461, 937
-  size: 130, 128
-  orig: 132, 130
-  offset: 1, 1
+  xy: 1017, 219
+  size: 40, 39
+  orig: 40, 39
+  offset: 0, 0
   index: -1
 charbasic_headbelow
   rotate: false
-  xy: 2145, 5
-  size: 254, 222
-  orig: 254, 222
+  xy: 1082, 2
+  size: 76, 67
+  orig: 76, 67
   offset: 0, 0
   index: -1
 charbasic_lowface
   rotate: true
-  xy: 2461, 1247
-  size: 213, 154
-  orig: 213, 154
+  xy: 944, 2
+  size: 64, 46
+  orig: 64, 46
   offset: 0, 0
   index: -1
 charbasic_ongtayao
   rotate: false
-  xy: 2496, 2326
-  size: 108, 108
-  orig: 108, 108
+  xy: 701, 2
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 fx_atk11
   rotate: false
-  xy: 2, 496
-  size: 1040, 469
-  orig: 1216, 492
-  offset: 135, 6
+  xy: 753, 372
+  size: 312, 141
+  orig: 365, 148
+  offset: 41, 2
   index: -1
 fx_atk12
   rotate: false
-  xy: 2, 967
-  size: 1145, 467
-  orig: 1216, 492
-  offset: 49, 6
+  xy: 2, 11
+  size: 343, 140
+  orig: 365, 148
+  offset: 15, 2
   index: -1
 fx_atk13
   rotate: false
-  xy: 2, 1436
-  size: 1211, 455
-  orig: 1216, 492
-  offset: 5, 34
+  xy: 2, 153
+  size: 364, 137
+  orig: 365, 148
+  offset: 1, 10
   index: -1
 fx_atk14
   rotate: false
-  xy: 1284, 2179
-  size: 1210, 452
-  orig: 1216, 492
-  offset: 4, 37
+  xy: 388, 377
+  size: 363, 136
+  orig: 365, 148
+  offset: 1, 11
   index: -1
 fx_atk15
-  rotate: true
-  xy: 2113, 229
-  size: 339, 288
-  orig: 1216, 492
-  offset: 2, 165
+  rotate: false
+  xy: 1102, 148
+  size: 101, 86
+  orig: 365, 148
+  offset: 1, 50
   index: -1
 fx_atk21
   rotate: false
-  xy: 1747, 181
-  size: 364, 387
-  orig: 738, 656
-  offset: 363, 6
+  xy: 991, 99
+  size: 109, 116
+  orig: 221, 197
+  offset: 109, 2
   index: -1
 fx_atk22
   rotate: false
-  xy: 1284, 1530
-  size: 732, 647
-  orig: 738, 656
-  offset: 3, 4
+  xy: 388, 181
+  size: 219, 194
+  orig: 221, 197
+  offset: 1, 1
   index: -1
 fx_atk23
-  rotate: true
-  xy: 2018, 1462
-  size: 715, 509
-  orig: 738, 656
-  offset: 10, 132
+  rotate: false
+  xy: 801, 217
+  size: 214, 153
+  orig: 221, 197
+  offset: 3, 40
   index: -1
 fx_atk24
   rotate: true
-  xy: 1215, 899
-  size: 629, 634
-  orig: 738, 656
-  offset: 21, 19
+  xy: 609, 181
+  size: 189, 190
+  orig: 221, 197
+  offset: 6, 6
   index: -1
 fx_atk25
   rotate: true
-  xy: 2, 2
-  size: 492, 627
-  orig: 738, 656
-  offset: 17, 23
+  xy: 801, 68
+  size: 147, 188
+  orig: 221, 197
+  offset: 5, 7
   index: -1
 fx_atk26
-  rotate: false
-  xy: 1843, 570
-  size: 478, 302
-  orig: 738, 656
-  offset: 31, 348
+  rotate: true
+  xy: 701, 36
+  size: 143, 91
+  orig: 221, 197
+  offset: 9, 104
   index: -1
 photo_2024-04-22_10-42-24
   rotate: false
-  xy: 2, 1893
-  size: 1280, 738
-  orig: 1280, 738
+  xy: 2, 292
+  size: 384, 221
+  orig: 384, 221
   offset: 0, 0
   index: -1
 weaponbasic
-  rotate: true
-  xy: 631, 4
-  size: 490, 508
-  orig: 490, 508
+  rotate: false
+  xy: 552, 27
+  size: 147, 152
+  orig: 147, 152
   offset: 0, 0
   index: -1
