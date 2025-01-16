@@ -37,7 +37,9 @@ export class PlayerInput extends Component {
         if (this.directStore)
             return;
         if (this.loop) {
-            this.buttonRight.getChildByName('hand').active = Loader.finish;
+            let Hand = this.buttonRight.getChildByName('hand');
+            if (Hand != null)
+                Hand.active = Loader.finish;
             if (Loader.finish)
                 return;
         }

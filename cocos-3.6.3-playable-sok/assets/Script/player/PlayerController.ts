@@ -202,10 +202,12 @@ export class PlayerController extends Component {
         // }
         //
         //Health
-        if (this.playerProtect)
-            this.healthCount.node.parent.active = false;
-        else
-            this.healthCount.string = this.playerHealth.toString();
+        if (this.healthCount != null) {
+            if (this.playerProtect)
+                this.healthCount.node.parent.active = false;
+            else
+                this.healthCount.string = this.playerHealth.toString();
+        }
     }
 
     start() {
@@ -326,12 +328,12 @@ export class PlayerController extends Component {
 
     smashDownEffectReady() {
         this.smashDownEffect.node.active = true;
-        this.smashDownEffect.SetPosV3(v3(0, 150, 0), this.node.position.clone());
+        this.smashDownEffect.onPosV3(v3(0, 150, 0), this.node.position.clone());
         this.smashDownEffectSpine.SetAnim("1", false);
     }
     smashDownEffectGround() {
         this.smashDownEffect.node.active = true;
-        this.smashDownEffect.SetPosV3(v3(0, 0, 0), this.node.position.clone());
+        this.smashDownEffect.onPosV3(v3(0, 0, 0), this.node.position.clone());
         this.smashDownEffectSpine.SetAnim("2", false);
     }
 

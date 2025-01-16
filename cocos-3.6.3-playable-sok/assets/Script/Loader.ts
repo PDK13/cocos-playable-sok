@@ -114,7 +114,9 @@ export default class Loader extends Component {
         //
         if (this.buttonSmashDown != null) {
             this.buttonSmashDown.active = true;
-            this.buttonSmashDown.getChildByPath('hand').active = true;
+            let Hand = this.buttonSmashDown.getChildByPath('hand');
+            if (Hand != null)
+                Hand.active = true;
         }
     }
 
@@ -159,7 +161,9 @@ export default class Loader extends Component {
             this.buttonSmashDown.active = true;
         if (this.buttonFire != null) {
             this.buttonFire.active = true;
-            this.buttonFire.getChildByPath('hand').active = false;
+            let Hand = this.buttonFire.getChildByPath('hand')
+            if (Hand != null)
+                Hand.active = false;
         }
         director.off(GameEvent.GAME_TRIGGER_FIRE, this.onFight, this);
     }
@@ -175,7 +179,9 @@ export default class Loader extends Component {
             this.buttonFire.active = true;
         if (this.buttonSmashDown != null) {
             this.buttonSmashDown.active = true;
-            this.buttonSmashDown.getChildByPath('hand').active = false;
+            let Hand = this.buttonSmashDown.getChildByPath('hand')
+            if (Hand != null)
+                Hand.active = false;
         }
         director.off(GameEvent.GAME_TRIGGER_SMASH_DOWN, this.onSmashDown, this);
     }
@@ -191,7 +197,7 @@ export default class Loader extends Component {
         tween(panel).to(0.1, { scale: v3(1, 1, 1) }).start();
     }
 
-    storeOnLick(){
-        
+    storeOnLick() {
+
     }
 }
